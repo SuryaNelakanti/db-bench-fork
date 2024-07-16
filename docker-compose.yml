@@ -1,0 +1,44 @@
+services:
+  mysql:
+    image: mysql:9.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+    ports:
+      - "3307:3306"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - "27018:27017"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  cassandra:
+    image: cassandra:3.11
+    environment:
+      MAX_HEAP_SIZE: 1G
+      HEAP_NEWSIZE: 256M
+    ports:
+      - "9042:9042"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  scylladb:
+    image: scylladb/scylla:5.4
+    ports:
+      - "9043:9042"
+    deploy:
+      resources:
+        limits:
+          memory: 1G
